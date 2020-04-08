@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 const { ObjectId } = Schema.Types;
+import { User } from "./";
 
 const chatSchema = Schema(
   {
@@ -19,5 +20,23 @@ const chatSchema = Schema(
     timestamps: true,
   }
 );
+
+const USER_LIMIT = 5;
+
+chatSchema.pre("save", async function () {
+  if (!this.title) {
+    const users = await User.where("_id")
+      .in(this.users)
+      .limit(USER_LIMIT)
+      .select("name");
+    let names = users.map((u) => u.name).join(", ");
+
+    if (this.users.length > USER_LIMIT) {
+      title += "...";
+    }
+
+    this.title = title;
+  }
+});
 
 export default mongoose.model("Chat", chatSchema);

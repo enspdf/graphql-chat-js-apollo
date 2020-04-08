@@ -1,7 +1,7 @@
 import { gql } from "apollo-server-express";
 
 export default gql`
-  extends type Mutation {
+  extend type Mutation {
     startChat(title: String, userIds: [ID!]!): Chat @auth
   }
 
