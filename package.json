@@ -1,0 +1,26 @@
+{
+  "name": "graphql-chat",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon -r esm ./src/index.js"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.11.0",
+    "bcryptjs": "^2.4.3",
+    "connect-redis": "^4.0.4",
+    "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "graphql": "^15.0.0",
+    "joi": "^14.3.1",
+    "mongoose": "^5.9.7",
+    "redis": "^3.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2",
+    "standard": "^14.3.3"
+  }
+}
