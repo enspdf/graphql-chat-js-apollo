@@ -15,7 +15,7 @@ export default gql`
       password: String!
     ): User @guest
     signIn(email: String!, password: String!): User @guest
-    signOut: Boolean
+    signOut: Boolean @auth
   }
 
   type User {
