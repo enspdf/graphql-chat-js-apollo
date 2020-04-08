@@ -21,6 +21,7 @@ import {
   REDIS_PASSWORD,
   PRODUCTION,
 } from "./config";
+import schemaDirectives from "./directives";
 
 (async () => {
   try {
@@ -66,7 +67,7 @@ import {
     const server = new ApolloServer({
       typeDefs,
       resolvers,
-      cors: false,
+      schemaDirectives,
       playground: PRODUCTION
         ? false
         : {
@@ -77,7 +78,7 @@ import {
       context: ({ req, res }) => ({ req, res }),
     });
 
-    server.applyMiddleware({ app });
+    server.applyMiddleware({ app, cors: false });
 
     app.listen({ port: APP_PORT }, () =>
       console.log(`http://localhost:${APP_PORT}${server.graphqlPath}`)
